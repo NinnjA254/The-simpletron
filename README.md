@@ -11,4 +11,6 @@ second part(end of chapter 11, exercise 11.17): modify the simpletron to load th
 third part (end of chapter 12, exercise 12.26): Programmers do not like writing programs in machine code😶. write a compiler that converts programs written in a high level language(called simple) to SML
 final(bonus?) part(exercise 12.30): write an interpreter for simple.
 
+note: I am using the second edition. different editions may have the exercises in different locations.
+
 ## I will update this page soon...
