@@ -3,24 +3,15 @@
 int main(void)
 {
     Cpu cpu;
-    int i;
-    int read;
 
     welcome();
     init(&cpu);
-
-    for (i = 0; i < 100; i++)
-    { // load program
-        printf("%02d ? ", i);
-        scanf("%d", &read);
-        if (read == -99999)
-            break;
-        cpu.memory[i] = read;
-    }
+    load_program(&cpu);
 
     printf("*** Program loading completed ***\n");
     printf("*** Program execution begins ***\n");
 
+    execute(&cpu);
     dump(cpu);
 
     return (0);
@@ -80,5 +71,19 @@ void dump(Cpu cpu)
             printf("%+05d ", cpu.memory[(i * 10) + j]);
         }
         printf("\n");
+    }
+}
+
+void load_program(Cpu *cpu)
+{
+    int i;
+    int read;
+    for (i = 0; i < 100; i++)
+    { // load program
+        printf("%02d ? ", i);
+        scanf("%d", &read);
+        if (read == -99999)
+            break;
+        cpu->memory[i] = read;
     }
 }
