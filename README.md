@@ -1,5 +1,5 @@
 # The-simpletron
-An implementation of the simpletron from the book  "C how to program(H.M. Deitel/P.J. Deitel)"
+An implementation of the simpletron from the book  "[C how to program(H.M. Deitel/P.J. Deitel)](https://deitel.com/c-how-to-program-9-e/)"
 
 This exercise is provided as an exercise in the above book.
 The idea is to create a small, virtual computer that can execute programs written in Simpletron machine language(SML).
