@@ -6,7 +6,7 @@ int main(int argc, char **argv)
 
 	if (argc  != 2)
 	{
-		printf("usage, %s SML program file name\n", argc[0]);
+		printf("usage, %s SML program file name\n", argv[0]);
 		return (-1);
 	}
     init(&cpu);
