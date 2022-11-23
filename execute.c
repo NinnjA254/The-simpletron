@@ -87,7 +87,7 @@ void execute(Cpu *cpu)
 			done = 1;
 			break;
 		default:
-			printf("*** Unrecognised operation code ***\n");
+			printf("*** Unrecognised operation code at: memory[%d] ***\n", cpu->instruction_counter);
 			done = -1;
 			break;
 		}

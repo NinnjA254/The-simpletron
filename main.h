@@ -12,6 +12,5 @@ typedef struct Cpu
 
 void dump(Cpu);
 void init(Cpu *);
-void welcome();
-void load_program(Cpu *);
+void load_program(char *, Cpu *);
 void execute(Cpu *);

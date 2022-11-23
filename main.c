@@ -1,12 +1,16 @@
 #include "main.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
     Cpu cpu;
 
-    welcome();
+	if (argc  != 2)
+	{
+		printf("usage, %s SML program file name\n", argc[0]);
+		return (-1);
+	}
     init(&cpu);
-    load_program(&cpu);
+    load_program(argv[1], &cpu);
 
     printf("*** Program loading completed ***\n");
     printf("*** Program execution begins ***\n");
@@ -17,16 +21,6 @@ int main(void)
     return (0);
 }
 
-void welcome()
-{
-    printf("*** Welcome to the simpletron! ***\n");
-    printf("*** Please enter your program one instruction ***\n");
-    printf("*** (or data word) at a time. I will type the ***\n");
-    printf("*** location number and question mark (?) ***\n");
-    printf("*** You then type the word for that location. ***\n");
-    printf("*** Type the sentinel -99999 to stop entering ***\n");
-    printf("*** your program ***\n");
-}
 
 void init(Cpu *cpu)
 {
@@ -42,6 +36,14 @@ void init(Cpu *cpu)
     cpu->instruction_register = 0;
     cpu->op_code = 0;
     cpu->operand = 0;
+
+    printf("*** Welcome to the simpletron! ***\n");
+    printf("*** Please enter your program one instruction ***\n");
+    printf("*** (or data word) at a time. I will type the ***\n");
+    printf("*** location number and question mark (?) ***\n");
+    printf("*** You then type the word for that location. ***\n");
+    printf("*** Type the sentinel -99999 to stop entering ***\n");
+    printf("*** your program ***\n");
 }
 
 void dump(Cpu cpu)
@@ -74,16 +76,4 @@ void dump(Cpu cpu)
     }
 }
 
-void load_program(Cpu *cpu)
-{
-    int i;
-    int read;
-    for (i = 0; i < 100; i++)
-    { // load program
-        printf("%02d ? ", i);
-        scanf("%d", &read);
-        if (read == -99999)
-            break;
-        cpu->memory[i] = read;
-    }
-}
+
