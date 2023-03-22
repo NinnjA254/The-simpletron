@@ -1,5 +1,9 @@
+#ifndef __SIMPLETRON__
+#define __SIMPLETRON__
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct Cpu
 {
@@ -15,3 +19,5 @@ void dump(Cpu);
 void init(Cpu *);
 void load_program(char *, Cpu *);
 void execute(Cpu *);
+
+#endif

@@ -11,10 +11,6 @@ int main(int argc, char **argv)
 	}
     init(&cpu);
     load_program(argv[1], &cpu);
-
-    printf("*** Program loading completed ***\n");
-    printf("*** Program execution begins ***\n");
-
     execute(&cpu);
     dump(cpu);
 
@@ -37,43 +33,39 @@ void init(Cpu *cpu)
     cpu->op_code = 0;
     cpu->operand = 0;
 
-    printf("*** Welcome to the simpletron! ***\n");
-    printf("*** Please enter your program one instruction ***\n");
-    printf("*** (or data word) at a time. I will type the ***\n");
-    printf("*** location number and question mark (?) ***\n");
-    printf("*** You then type the word for that location. ***\n");
-    printf("*** Type the sentinel -99999 to stop entering ***\n");
-    printf("*** your program ***\n");
+    printf("*** simpletron v1 ***\n");
 }
 
 void dump(Cpu cpu)
 {
     int i;
     int j;
+    FILE *fptr;
 
-    printf("REGISTERS:\n");
-    printf("accumulator          %+05d\n", cpu.accumulator);
-    printf("instructionCounter      %02d\n", cpu.instruction_counter);
-    printf("instructionRegister  %+05d\n", cpu.instruction_register);
-    printf("operationCode           %02d\n", cpu.op_code);
-    printf("operand                 %02d\n", cpu.operand);
+    fptr = fopen("simpletron.dump", "w");
 
-    printf("\nMEMORY:\n");
-    printf("   ");
+    fprintf(fptr, "REGISTERS:\n");
+    fprintf(fptr, "accumulator          %+05d\n", cpu.accumulator);
+    fprintf(fptr, "instructionCounter      %02d\n", cpu.instruction_counter);
+    fprintf(fptr, "instructionRegister  %+05d\n", cpu.instruction_register);
+    fprintf(fptr, "operationCode           %02d\n", cpu.op_code);
+    fprintf(fptr, "operand                 %02d\n", cpu.operand);
+
+    fprintf(fptr, "\nMEMORY:\n");
+    fprintf(fptr, "   ");
     for (j = 0; j < 10; j++)
-        printf("%5d ", j);
-    printf("\n");
+        fprintf(fptr, "%5d ", j);
+    fprintf(fptr, "\n");
 
     for (i = 0; i < 10; i++)
     {
         for (j = 0; j < 10; j++)
         {
             if (j == 0)
-                printf("%2d ", i * 10);
-            printf("%+05d ", cpu.memory[(i * 10) + j]);
+                fprintf(fptr, "%2d ", i * 10);
+            fprintf(fptr, "%+05d ", cpu.memory[(i * 10) + j]);
         }
-        printf("\n");
+        fprintf(fptr, "\n");
     }
+    fclose(fptr);
 }
-
-

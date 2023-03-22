@@ -30,8 +30,9 @@
 
 void execute(Cpu *cpu)
 {
-	int done = 0; // used as a boolean
+	int done = 0; 
 
+	printf("*** Program execution begins ***\n");
 	while (done == 0)
 	{
 		cpu->instruction_register = cpu->memory[cpu->instruction_counter];
@@ -87,7 +88,7 @@ void execute(Cpu *cpu)
 			done = 1;
 			break;
 		default:
-			printf("*** Unrecognised operation code at: memory[%d] ***\n", cpu->instruction_counter);
+			printf("*** Unrecognised operation code at: memory[%d] ***\n", cpu->instruction_counter - 1); 
 			done = -1;
 			break;
 		}
